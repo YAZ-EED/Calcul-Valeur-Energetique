@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calcul Valeur energetique</title>
+    <link rel="stylesheet" href="Css/bootstrap.css">
+    <style>
+        label {
+            display: inline-block;
+            width: 100px;
+        }
+
+        input {
+            border: 1px solid gray;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <h1>Calcul Valeur energetique d'un repas</h1>
+        <h2>Choisir les aliments que composent votre repas :</h2>
+        <label>
+            <input type="checkbox" name="" id="" class="for">
+            Pain :
+        </label>
+        <input type="text" name="" id="" data-number="2.75">grammes <br>
+        <label>
+            <input type="checkbox" name="" id="">
+            Viand :
+        </label>
+        <input type="text" name="" id="" data-number="1.8">grammes <br>
+        <label>
+            <input type="checkbox" name="" id="">
+            Legumes :
+        </label>
+        <input type="text" name="" id="" data-number="0.4">grammes <br>
+        <label>
+            <input type="checkbox" name="" id="">
+            Banane :
+        </label>
+        <input type="text" name="" id="" data-number="116">Unites <br>
+        <label>
+            <input type="checkbox" name="" id="">
+            Pomme :
+        </label>
+        <input type="text" name="" id="" data-number="80">Unites <br>
+        <label>
+            <input type="checkbox" name="" id="">
+            Yaourt :
+        </label>
+        <input type="text" name="" id="" data-number="140">Unites <br>
+        <button>Calculer</button> <br>
+        <span>La valeur energetique de votre repas est :</span>
+        <input type="text" name="" id="res" readonly>Kilo calories
+    </div>
+    <script>
+        let btn = document.querySelector('button');
+        btn.onclick = () => {
+            let input;
+            let somme = 0;
+            let res = true;
+            let res2 = true;
+            let checkboxs = document.querySelectorAll('input');
+            checkboxs.forEach(e => {
+                input = e.parentElement.nextElementSibling;
+                input.style = 'border:1px solid gray';
+                if (e.checked) {
+                    res2 = false;
+                    if (input.value == '' || isNaN(input.value)) {
+                        input.style = 'border:2px solid red';
+                        res = false;
+                    } else {
+                        somme += (input.value * input.getAttribute('data-number'))
+                    }
+                }
+            });
+            if (res2) {
+                alert('Choisir les aliments que composent votre repas');
+                res = false
+            }
+            if (res) {
+                document.getElementById('res').value = somme;
+            }
+        }
+
+        // $('button').click(function(){
+        //     let a = $('[type=checkbox]:checked');
+        //     if(!a.length){
+        //         $('#res').val('')
+        //         alert();
+        //         return ;
+        //     }
+        //     let s = 0 ;
+        //     a.each(function(){
+        //         let inp = $(this).parent().next('input');
+        //         s += ( inp.val() * inp.attr('data-number') )
+        //     })
+
+        //     $('#res').val(s)
+        // })
+    </script>
+</body>
+
+</html>
